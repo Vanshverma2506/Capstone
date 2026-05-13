@@ -3,8 +3,8 @@ kind: Ingress
 
 metadata:
   name: codespace-ingress
-  labels:
-    app.kubernetes.io/name: codespace-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 
 spec:
   ingressClassName: nginx
@@ -12,8 +12,8 @@ spec:
   rules:
     - http:
         paths:
-          - path: /api/sandbox
-            pathType: Prefix
+          - path: /api(/|$)(.*)
+            pathType: ImplementationSpecific
 
             backend:
               service:
