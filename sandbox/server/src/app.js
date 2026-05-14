@@ -11,10 +11,9 @@ app.use(express.urlencoded({extended:true}))
 app.use(morgan("dev"))
 
 app.get("/api/sandbox",(req,res)=>{
-res.status(200).json({
-    message:"sandbox api create",
-    status:"ok"
-})
+   res.json({
+      status:"ok"
+   })
 })
 
 app.post("/api/sandbox/start",async(req,res)=>{
@@ -28,6 +27,15 @@ app.post("/api/sandbox/start",async(req,res)=>{
         message: 'Sandbox environment created successfully',
         sandboxId,
         previewUrl: `http://${sandboxId}.preview.localhost`
+    })
+})
+console.log("POST ROUTE LOADED")
+
+app.post("/api/sandbox/vansh",(req,res)=>{
+    console.log("POST API HIT")
+
+    return res.json({
+        message:"working"
     })
 })
 
